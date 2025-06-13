@@ -12,8 +12,10 @@ import {
   Fade,
   useTheme
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+
 
 export default function Report({ result }) {
   const theme = useTheme();

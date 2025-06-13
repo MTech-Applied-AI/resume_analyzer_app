@@ -186,13 +186,26 @@ export default function ResumeUpload() {
               </Fade>
             )}
 
-            {result && result.score && (
+            {/* {result && result.score && (
               <Suspense fallback={<LoadingSkeleton />}>
                 <Fade in={true} timeout={1000}>
                   <Report result={result} />
                 </Fade>
               </Suspense>
+            )} */}
+
+            {result && result.score && (
+            <Suspense fallback={<LoadingSkeleton />}>
+              <div>
+                <Fade in={true} timeout={1000}>
+                  <div>
+                    <Report result={result} />
+                  </div>
+                </Fade>
+              </div>
+            </Suspense>
             )}
+
           </Box>
         </Fade>
       </Container>
