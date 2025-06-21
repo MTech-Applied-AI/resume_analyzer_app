@@ -6,3 +6,6 @@ docx2txt
 sentence-transformers
 requests
 python-dotenv
+qdrant-client
+boto3
+torch 
