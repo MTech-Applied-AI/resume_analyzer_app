@@ -22,10 +22,10 @@ export default function Report({ result }) {
 
   return (
     <Fade in={true} timeout={1000}>
-      <Paper 
-        elevation={3} 
-        sx={{ 
-          mt: 5, 
+      <Paper
+        elevation={3}
+        sx={{
+          mt: 5,
           p: 4,
           background: 'linear-gradient(to bottom right, #ffffff, #f8f9fa)',
           borderRadius: 2,
@@ -36,8 +36,8 @@ export default function Report({ result }) {
           }
         }}
       >
-        <Typography 
-          variant="h5" 
+        <Typography
+          variant="h5"
           gutterBottom
           sx={{
             fontWeight: 'bold',
@@ -47,15 +47,15 @@ export default function Report({ result }) {
             gap: 1
           }}
         >
-          📊 Resume Match Report
+          Resume Match Report
         </Typography>
 
-        <Typography variant="h6" sx={{ mt: 2, color: theme.palette.text.secondary }}>🔍 Match Score:</Typography>
-        <Typography 
-          variant="body1" 
-          sx={{ 
-            fontWeight: 'bold', 
-            fontSize: '1.2rem', 
+        <Typography variant="h6" sx={{ mt: 2, color: theme.palette.text.secondary }}>Match Score:</Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            fontWeight: 'bold',
+            fontSize: '1.2rem',
             mb: 2,
             color: theme.palette.primary.main
           }}
@@ -65,13 +65,13 @@ export default function Report({ result }) {
 
         <Divider sx={{ my: 2 }} />
 
-        <Typography variant="h6" sx={{ mt: 2, color: theme.palette.text.secondary }}>🧠 Extracted Skills:</Typography>
+        <Typography variant="h6" sx={{ mt: 2, color: theme.palette.text.secondary }}> Extracted Skills:</Typography>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 1 }}>
           {result.skills.map((skill, index) => (
-            <Chip 
-              key={index} 
-              label={skill} 
-              color="primary" 
+            <Chip
+              key={index}
+              label={skill}
+              color="primary"
               variant="outlined"
               sx={{
                 transition: 'all 0.3s ease',
@@ -85,10 +85,10 @@ export default function Report({ result }) {
           ))}
         </Box>
 
-        <Typography variant="h6" sx={{ mt: 4, color: theme.palette.text.secondary }}>📘 Experience Summary:</Typography>
-        <Typography 
-          variant="body1" 
-          sx={{ 
+        <Typography variant="h6" sx={{ mt: 4, color: theme.palette.text.secondary }}> Experience Summary:</Typography>
+        <Typography
+          variant="body1"
+          sx={{
             mt: 1,
             lineHeight: 1.6,
             color: theme.palette.text.primary
@@ -98,9 +98,9 @@ export default function Report({ result }) {
         </Typography>
 
         <Typography variant="h6" sx={{ mt: 4, color: theme.palette.text.secondary }}>🎓 Education:</Typography>
-        <Typography 
-          variant="body1" 
-          sx={{ 
+        <Typography
+          variant="body1"
+          sx={{
             mt: 1,
             lineHeight: 1.6,
             color: theme.palette.text.primary
@@ -109,12 +109,12 @@ export default function Report({ result }) {
           {result.education}
         </Typography>
 
-        <Typography variant="h6" sx={{ mt: 4, color: theme.palette.text.secondary }}>📌 Suggested Improvements:</Typography>
+        <Typography variant="h6" sx={{ mt: 4, color: theme.palette.text.secondary }}> Suggested Improvements:</Typography>
         {result.improvements.length > 0 ? (
           <List>
             {result.improvements.map((item, index) => (
-              <ListItem 
-                key={index} 
+              <ListItem
+                key={index}
                 alignItems="flex-start"
                 sx={{
                   transition: 'all 0.3s ease',
@@ -127,7 +127,7 @@ export default function Report({ result }) {
                 <ListItemIcon>
                   <ReportProblemIcon color="warning" />
                 </ListItemIcon>
-                <ListItemText 
+                <ListItemText
                   primary={item}
                   sx={{
                     '& .MuiListItemText-primary': {
@@ -140,21 +140,21 @@ export default function Report({ result }) {
             ))}
           </List>
         ) : (
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              mt: 1, 
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 1,
               color: 'success.main',
               display: 'flex',
               alignItems: 'center',
               gap: 1
             }}
           >
-            <CheckCircleIcon sx={{ verticalAlign: 'middle' }} /> 
+            <CheckCircleIcon sx={{ verticalAlign: 'middle' }} />
             Your resume aligns well with the job description.
           </Typography>
         )}
       </Paper>
     </Fade>
   );
-} 
+}

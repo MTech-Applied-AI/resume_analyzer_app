@@ -21,7 +21,7 @@ import botocore.exceptions
 import hashlib
 
 from sentence_transformers import CrossEncoder
-
+from qdrant_client.http.exceptions import UnexpectedResponse
 
 
 load_dotenv()
@@ -47,10 +47,23 @@ app.add_middleware(
 cross_model = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-12-v2')
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
+
 # Qdrant setup
 qdrant = QdrantClient(host="localhost", port=6333)
 QDRANT_COLLECTION = "similar_matching_resumes"
-qdrant.recreate_collection(QDRANT_COLLECTION, vectors_config=VectorParams(size=384, distance=Distance.COSINE))
+# qdrant.recreate_collection(QDRANT_COLLECTION, vectors_config=VectorParams(size=384, distance=Distance.COSINE))
+
+try:
+    qdrant.get_collection(QDRANT_COLLECTION)
+    logger.info(f"Qdrant collection '{QDRANT_COLLECTION}' already exists.")
+except UnexpectedResponse:
+    logger.info(f"Creating Qdrant collection '{QDRANT_COLLECTION}'.")
+    qdrant.create_collection(
+        collection_name=QDRANT_COLLECTION,
+        vectors_config=VectorParams(size=384, distance=Distance.COSINE)
+    )
+
+
 
 
 # MinIO setup
@@ -136,7 +149,7 @@ async def ollama_extract_all(resume_text: str, jd_text: str, max_retries: int = 
         - jd_skills: list of skills required as per the job description
         - experience_summary: a 2-3 line summary of experience
         - education: 1-2 line summary of educational background
-        - improvements: list of skills the candidate should add to match the JD
+        - improvements: list of skills with one liner suggestion to the candidate should add to match the JD
 
         Resume:
         \"\"\"
